@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>成功界面</title>
+</head>
+
+<body bgcolor="#FFFFCC">
+<% 
+<!--#include file="Connections/wxc.asp" -->
+set conn=Server.createobject("adodb.connection")
+conn.open  "PROVIDER=SQLOLEDB;DATA  SOURCE=shujuyuan;UID=sa;PWD=;DATABASE=shujuku"
+strSQL="select * from student"
+
+set rs=server.CreateObject("adodb.recordset")
+rs.open strSQL,conn,1,1
+set rs=conn.execute(strSQL)
+%>
+<% 
+ if rs.eof or rs.bof then
+   response.write("123")
+   else 
+   response.write(rs("sname"))
+   rs.close 
+   end if
+%>
+</html>
